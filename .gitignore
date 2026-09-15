@@ -54,3 +54,12 @@ build-iPhoneSimulator/
 
 # Used by RuboCop. Remote config files pulled in from inherit_from directive.
 # .rubocop-https?--*
+
+# Runtime data: source CSVs, generated DBF, conversion journals/archives.
+CSV/
+Converted_CSV/
+DBF/
+Logs/
+*.csv
+*.dbf
+conversion.log
