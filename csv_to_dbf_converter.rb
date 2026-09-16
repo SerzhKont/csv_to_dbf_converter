@@ -44,6 +44,7 @@ LOG_FILE      = File.join(BASE_DIR, 'conversion.log')
 ARCHIVE_DIR   = File.join(BASE_DIR, 'Logs')
 
 def ensure_output_dirs
+  FileUtils.mkdir_p(CSV_DIR)
   FileUtils.mkdir_p(CONVERTED_DIR)
   FileUtils.mkdir_p(DBF_DIR)
 end
@@ -319,13 +320,6 @@ def csv_files_in_queue
 end
 
 def convert_all
-  unless Dir.exist?(CSV_DIR)
-    FileUtils.mkdir_p(CSV_DIR)
-    UI.box("Каталог #{UI::BOLD}#{CSV_DIR}#{UI::CLEAR} не был найден и создан.")
-    UI.skip('Каталог пуст. Скопируйте в него CSV-файлы для конвертации.')
-    return
-  end
-
   csv_files = csv_files_in_queue
   if csv_files.empty?
     UI.skip("Каталог #{UI::BOLD}#{CSV_DIR}#{UI::CLEAR} пуст. " \
